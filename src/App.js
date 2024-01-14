@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.scss";
+import "boxicons/css/boxicons.min.css";
+import Button from "./components/button/Button";
+import { useState,useEffect } from "react";
 function App() {
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    const counter = setTimeout((val) => {
+      setLoading(!val);
+    }, 2000);
+    return () => clearTimeout(counter);
+  }, []);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Button loading={loading} onClick={() => setLoading(!loading)}>
+        Loading
+      </Button>
     </div>
   );
 }
-
 export default App;
